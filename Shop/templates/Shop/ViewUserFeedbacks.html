@@ -1,0 +1,77 @@
+{% extends 'Shop/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+        </style>
+</head>
+<body>
+    <div id="tab">
+    <form method="post">
+        <br><br>
+        <h1 align="center">Users Complaints List</h1>
+        <table id="customers" align="center" border="1">
+            <tr>
+                <td  style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">User</td>
+                <td  style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Date</td>
+                <td  style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Feedback</td>
+            </tr>
+            {% for i in obj1 %}
+                
+                <tr>
+                    <td>{{i.user.name}}</td>
+                    <td>{{i.doj}}</td>
+                    <td>{{i.feedback}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+        </form>
+    </div>
+</body>
+</html>
+
+
+{% endblock  %}

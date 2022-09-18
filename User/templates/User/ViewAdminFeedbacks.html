@@ -1,0 +1,68 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    #feedbacktable {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 50%;
+    }
+    #feedbacktable td, #feedbacktable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#feedbacktable tr:nth-child(even){background-color: #f2f2f2;}
+
+#feedbacktable tr:hover {background-color: #ddd;}
+
+#feedbacktable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style> 
+</head>   
+<body>
+    <form method="post">
+        <br><br>
+        <h1 align="center">Site Feedbacks List</h1>
+        <table align="center" id="feedbacktable">
+            <tr>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Date</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Feedback</td>
+            </tr>
+            {% for i in obj1 %}
+                
+                <tr>
+                    <td>{{i.doj}}</td>
+                    <td>{{i.feedback}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+        </form>
+</body>
+</html>
+
+
+{% endblock  %}

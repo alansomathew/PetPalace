@@ -1,0 +1,84 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #customers {
+          width: 80%;
+    
+        }
+        </style>
+</head>
+<body>
+    
+    <form method="post"   id="districtform" data-place-url="{%  url 'Guest:load-place' %}">
+        {% csrf_token %}
+<br><br>
+        <table id="customers" align="center">
+            <tr>
+                <th>District</th>
+                <th><select name="district" id="district">
+                    <option value="">---select---</option>
+                    {% for i in dis %}
+                    <option value="{{i.id}}">{{i.district}}</option>
+                    {% endfor %}
+                    
+                </select>
+                </th>
+                <th>Place</td>
+                <th> <select name="place" id="place">
+                    <option value="">---select---</option>
+                    
+                </select></th>
+                <td colspan="2"><input type="submit" name="search" value="Search"></td>
+            </tr>
+        </table>
+    </form>
+    
+        <br>
+        <hr>
+        <br>
+        <table align="center">
+            <tr>
+                {% for x in name  %}
+                <td>
+                    <p style="border: 1px solid black;align-content: center;">
+                    <img src="{{ x.logo.url }}" width="120" height="120"  ><br>
+                      <b> {{ x.name }}</b> <br>
+                     <b>{{ x.contact }}</b> <br> 
+                     <b>{{ x.email }} <br></b>
+                     <b>{{ x.address }} <br> </b>
+                     <a href="{% url 'User:viewmore-pets' x.id %}">View Pets</a>
+                     <a href="{% url 'User:viewmore-foods' x.id %}">View Food Items</a>
+                     <a href="{% url 'User:viewmore-products' x.id %}">View Products</a>
+                     
+                </td>
+                {% endfor %}
+            </tr>
+
+        </table>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+ $("#district").change(function () {
+     var did =$(this).val();
+     var ur =$("#districtform").attr("data-place-url");
+     $.ajax({
+         url: ur,
+         data:{ disd: did, },
+         success: function(data) {
+             $("#place").html(data);
+         },
+     });
+ });
+ </script>
+</html>
+
+
+{% endblock  %}

@@ -1,0 +1,59 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #feedbacktable {
+          width: 80%;
+        }
+        </style>
+</head>
+<body>
+    <div id="tab">
+    <form method="post">
+        {% csrf_token %}
+        <br><br>
+
+        <table align="center" id="feedbacktable">
+            <td>Hospitaltype</td>
+            <td><select name="hospitaltype" id="hospitaltype">
+                <option value="">---select---</option>
+                {% for i in dis %}
+                <option value="{{i.id}}">{{i.hospitaltype}}</option>
+                {% endfor %}
+                
+            </select>
+                <td colspan="2"><input type="submit" name="search" value="Search"></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+        <br>
+        <hr>
+        <br>
+        <table align="center">
+            <tr>
+                {% for x in name  %}
+                <td>
+                    <p style="border: 1px solid black;align-content: center;">
+                    <img src="{{ x.logo.url }}" width="120" height="120" ><br>
+                       {{ x.name }} <br>
+                     {{ x.contact }} <br> 
+                     {{ x.email }} <br>
+                     {{ x.address }} <br> 
+                     <a href="{% url 'User:viewmore-doctors' x.id %}">View Doctors</a>
+                </td>
+                {% endfor %}
+            </tr>
+
+        </table>
+</body>
+</html>
+
+{% endblock  %}

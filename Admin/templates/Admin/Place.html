@@ -1,0 +1,112 @@
+{% extends 'Admin/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+        #status1 {border-radius:0%;
+                   background-color: lightgreen;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        #status2 {border-radius:0%;
+                   background-color: lightskyblue;
+                     padding: 0.2rem 1rem;
+                     text-align: center;}
+        </style>
+</head>
+<body>
+    <div id="tab">
+        <br><br>
+    <form method="post">
+        {% csrf_token %}
+    
+        <h1>Set Place</h1>
+        <table align="center">
+            <tr>
+                <td>District</td>
+                <td>
+                    <select name="district">
+                        <option value="">---select---</option>
+                        {% for i in dis %}
+                        <option value="{{i.id}}">{{i.district}}</option>
+                        {% endfor %}
+                        
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Place:</td>
+                <td><input type="text" name="place" required autocomplete="off"></td>
+                <tr>
+                    <td colspan="2">
+                    <input type="submit" name="save" value="Save">
+                    <input type="reset" name="cancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+        <table id="customers">
+            <br>
+            <tr>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Place</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">District</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Action</td>
+            </tr>
+            {% for i in pla %}
+            
+            <tr>
+                <td>{{i.place}}</td>
+                <td>{{i.district.district}}</td>
+                <td><a id="status1" href="{% url 'Admin:delete-place' i.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+
+
+{% endblock  %}

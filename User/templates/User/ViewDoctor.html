@@ -1,0 +1,34 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br>
+    <table  align="center" border="1" >
+        <tr>
+            {% for x in obj2  %}
+            <td>
+                <p style="border: 1px solid black;align-items: center;">
+                <img src="{{ x.photo.url }}" width="120" height="120"><br>
+                 Doctor Name:<b> {{ x.name}}</b> <br>
+                 Email: <b>{{ x.email }} </b><br> 
+                 Qualification: <b>{{ x.qualification }} </b><br> 
+            <a href="{% url 'User:bookdoctor' x.id %}">Book Appointment</a>
+            {% endfor %}
+        </p>
+    </b>
+</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+{% endblock  %}

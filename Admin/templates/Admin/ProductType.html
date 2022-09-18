@@ -1,0 +1,46 @@
+{% extends 'Admin/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+      {% csrf_token %}
+        <table align="center" border="1">
+            <tr>
+                <td>ProductType:
+                </td>
+                <td><input type="text" name="producttype" required value="{{editobj.producttype}}"></td><!--editobj is the id of the district that we need to delete,edit obj specifies the id and district specifies the field-->
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Save" name="save">
+                    <input type="reset" value="Cancel" name="cancel">
+                </td>
+            </tr>
+        </table>
+        <table border="1">
+            <tr>
+                <td>ProductType</td>
+                <td>Action</td>
+            </tr>
+            {% for x in dis %}
+            <tr>
+                <td>{{x.producttype}}</td>
+                <td><a href="{% url 'Admin:delete-producttype' x.id %}">Delete</a></td>
+                <td><a href="{% url 'Admin:edit-producttype' x.id %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+
+
+{% endblock  %}

@@ -1,0 +1,55 @@
+from Admin import views
+from django.urls import path
+
+app_name="Admin"
+
+urlpatterns = [
+    path('district/',views.district,name="district"),
+    path('deldistrict/<int:did>/',views.delete_district,name="delete-district"),
+    path('editdistrict/<int:eid>/',views.edit_district,name="edit-district"),
+    path('place/',views.place,name="place"),
+    path('delplace/<int:pid>/',views.delete_place,name="delete-place"),
+    path('pettype/',views.pettype,name="pettype"),
+    path('deletepettype/<int:pid>/',views.delete_pettype,name="delete-pettype"),
+    path('editpettype/<int:eid>/',views.edit_pettype,name="edit-pettype"),
+    path('breedtype/',views.breedtype,name="breedtype"),
+    path('deletebreedtype/<int:pid>/',views.delete_breedtype,name="delete-breedtype"),
+    path('producttype/',views.producttype,name="producttype"),
+    path('delproducttype/<int:did>/',views.delete_producttype,name="delete-producttype"),
+    path('editproducttype/<int:eid>/',views.edit_producttype,name="edit-producttype"),
+    path('hospitaltype/',views.hospitaltype,name="hospitaltype"),
+    path('delhospitaltype/<int:did>/',views.delete_hospitaltype,name="delete-hospitaltype"),
+    path('edithospitaltype/<int:eid>/',views.edit_hospitaltype,name="edit-hospitaltype"),
+    path('newshops/',views.newshops,name="newshops"),
+    path('newhospitals/',views.newhospitals,name="newhospitals"),
+    path('accepthospitals/<int:aid>/',views.accepthos,name="accept-hosp"),
+    path('rejecthospitals/<int:rid>/',views.rejecthos,name="reject-hosp"),
+    path('acceptshopss/<int:aid>/',views.acceptshop,name="accept-shop"),
+    path('rejectshops/<int:rid>/',views.rejectshop,name="reject-shop"),
+    path('newusers/',views.newusers,name="newusers"),
+    path('accepthospitals/',views.accepthospitals,name="accepthospitals"),
+    path('rejecthos_fromlist/<int:rid>/',views.rejecthos_fromlist,name="reject-hos"),
+    path('rejecthospitals/',views.rejecthospitals,name="rejecthospitals"),
+    path('accepthos_fromlist/<int:aid>/',views.accepthos_fromlist,name="accept-hos"),
+    path('acceptshops/',views.acceptshops,name="acceptshops"),
+    path('rejectshop_fromlist/<int:rid>/',views.rejectshop_fromlist,name="reject-shops"),
+    path('rejectshops/',views.rejectshops,name="rejectshops"),
+    path('acceptshop_fromlist/<int:aid>/',views.acceptshop_fromlist,name="accept-shops"),
+    path('home/',views.homepage,name="home"),
+    path('viewuserfeedbacks/',views.viewuserfeedbacks,name="viewuserfeedbacks"),
+    path('viewdoctorfeedbacks/',views.viewdoctorfeedbacks,name="viewdoctorfeedbacks"),
+    path('viewshopfeedbacks/',views.viewshopfeedbacks,name="viewshopfeedbacks"),
+    path('viewhospitalfeedbacks/',views.viewhospitalfeedbacks,name="viewhospitalfeedbacks"),
+    path('viewusercomplaints/',views.viewusercomplaints,name="UserComplaint"),
+    path('viewdoctorcomplaints/',views.viewdoctorcomplaints,name="DoctorComplaint"),
+    path('viewshopcomplaints/',views.viewshopcomplaints,name="ShopComplaint"),
+    path('viewhospitalcomplaints/',views.viewhospitalcomplaints,name="HospitalComplaint"),
+    path('replyuser/<int:cid>/',views.replyuser,name="reply-user"),
+    path('replyshop/<int:cid>/',views.replyshop,name="reply-shop"),
+    path('replyhospital/<int:cid>/',views.replyhospital,name="reply-hospital"),
+    path('replydoctor/<int:cid>/',views.replydoctor,name="reply-doctor"),
+    path('logout/',views.logout,name="logout"),
+    
+
+
+]

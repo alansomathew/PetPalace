@@ -1,0 +1,34 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br>
+        <hr>
+        <br>
+        <table align="center">
+            <tr>
+                <td>
+                    <p style="border: 1px solid black;align-items: center;">
+                    <img src="{{ obj1.image.url }}" width="240" height="240"><br>
+                       {{ obj1.productname }} <br>
+                     {{ obj1.rate }} <br> 
+                     {{ obj1.stock }} <br> 
+                     
+                
+                </td>
+            </tr>
+
+        </table>
+</body>
+</html>
+
+
+{% endblock  %}

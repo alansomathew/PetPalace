@@ -1,0 +1,100 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cus {
+          width: 100%;
+        }
+        #cus1 {
+          width: 80%;
+        }
+        </style>
+</head>
+
+<body>
+    <div id="tab">
+    <form method="post"   id="petform" data-pet-url="{%  url 'Shop:load-breedtype' %}">
+        {% csrf_token %}
+<br><br>
+        <table id="cus1" align="center">
+            <tr>
+                <td>Pettype</td>
+                <td><select name="pettype" id="pettype">
+                    <option value="">---select---</option>
+                    {% for i in dis %}
+                    <option value="{{i.id}}">{{i.pettype}}</option>
+                    {% endfor %}
+                    
+                </select>
+                </td>
+                <td>Breedtype</td>
+                <td> <select name="breedtype" id="breedtype">
+                    <option value="">---select---</option>
+                    
+                </select></td>
+                <td colspan="2"><input type="submit" id="cus" name="search" value="Search"></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+        <br>
+        <hr>
+        <br>
+    <table  align="center" cellpadding="10">
+        <tr>
+            {% for x in obj2 %}
+            <td>
+                    <p style="border: 1px solid black;align-items: center;">
+                        <img src="{{ x.image.url }}" width="120" height="120"><br>
+                     Fooditemname: <b>{{ x.fooditemname }}</b> <br>
+
+                     Pettype: <b>{{ x.breedtype.pettype.pettype}}</b> <br>
+                     Breedtype: <b> {{ x.breedtype.breedtype }}</b> <br>
+
+                        Rate: <b>{{ x.rate }}</b> <br>
+                        Stock: <b>{{ x.stock }}</b> <br>
+                        
+                        {% if x.stock > 0 %}
+                        <a href="{% url 'User:takebuyfood' x.id %}">BookNow</a>
+
+                        {% else %}
+                        <span>Out of stock</span>
+                        {% endif %}
+    
+                    </p>
+            </td>
+            {% if forloop.counter|divisibleby:4 %}   
+        </tr>
+        <tr>
+            {% endif %}
+            {% endfor %}
+            
+        </tr>
+    </table>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+ $("#pettype").change(function () {
+     var did =$(this).val();
+     var ur =$("#petform").attr("data-pet-url");
+     $.ajax({
+         url: ur,
+         data:{ disd: did, },
+         success: function(data) {
+             $("#breedtype").html(data);
+         },
+     });
+ });
+ </script>
+</html>
+
+
+{% endblock  %}

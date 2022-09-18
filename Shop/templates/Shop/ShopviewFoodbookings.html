@@ -1,0 +1,129 @@
+{% extends 'Shop/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 80%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+        #status1 {border-radius:0%;
+                   background-color: lightgreen;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        #status2 {border-radius:0%;
+                   background-color: lightskyblue;
+                     padding: 0.2rem 1rem;
+                     text-align: center;}
+                     #status3 {border-radius:0%;
+                   background-color: lightcoral;
+                     padding: 0.2rem 1rem;
+                     text-align: center;}
+        </style>
+</head>
+<body>
+    <div id="tab">
+    <form method="post">
+        <br><br>
+        <table id="customers" border="1" align="center" cellpadding="10">
+            <tr>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Fooditemname</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Bookeddate</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Quantity</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Totalprice</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Username</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Contact</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Payment Status</td>
+            {% for i in obj1 %}
+                
+                <tr>
+                    <td>{{i.fooditem.fooditemname}}</td>
+                    <td>{{i.bookeddate}}</td>
+                    <td>{{i.quantity}}</td>
+                    <td>{{i.totalprice}}</td>
+                    <td>{{i.user.name}}</td>
+                    <td>{{i.user.contact}}</td>
+                    <td>
+                        {% if i.pstatus == 1%}
+                        <p id="status1">Already Paid</p>
+                        {% if i.vstatus == 0 %}
+                        <p><a id="status3" href="{% url 'Shop:set-delivery' i.id %}">Delivery</a></p>
+                        {% else %}
+    
+    <p>{{i.deliverydate}}</p>
+                        {% endif %}
+                        {% else %}
+                        <p id="status2">Not paid</p>
+
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+        </form>
+    </div>
+</body>
+</html>
+
+
+{% endblock  %}

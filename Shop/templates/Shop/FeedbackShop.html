@@ -1,0 +1,37 @@
+{% extends 'Shop/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <form method="post">
+        {% csrf_token %}
+        <br><br>
+
+        <table align="center" border="1">
+            <h1 align="center">Feedback </h1>
+            <tr>
+                <td>Feedback:</td>
+                <td><textarea name="feedback" rows="6" cols="40" required autocomplete="off"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="save" value="Save">
+                <input type="reset" name="cancel" value="Cancel"></td>
+            </tr>
+        </table>
+
+    </form>
+    </div>
+</body>
+</html>
+
+
+
+{% endblock  %}

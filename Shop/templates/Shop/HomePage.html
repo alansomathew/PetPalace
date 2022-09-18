@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Shop Dashboard</h1>
+    
+    <a href="{% url 'Shop:myprofile'  %}">My Profile</a>
+    <p><a href="{% url 'Shop:editprofile'  %}">Edit Profile</a></p>
+    <p><a href="{% url 'Shop:changepassword'  %}">Change Password</a></p>
+    <p><a href="{% url 'Shop:newpets'  %}">Add NewPets</a></p>
+    <p><a href="{% url 'Shop:newproducts'  %}">Add NewProducts</a></p>
+    <p><a href="{% url 'Shop:newfooditem'  %}">Add NewFoodItems</a></p>
+    <p><a href="{% url 'Shop:shopviewpetbookings'  %}">View Pet Bookings</a></p>
+    <p><a href="{% url 'Shop:shopviewproductbookings'  %}">View Product Bookings</a></p>
+    <p><a href="{% url 'Shop:shopviewfoodbookings'  %}">View Food Bookings</a></p>
+    <a href="{% url 'Shop:feedbackshop'  %}">Feedback</a>
+    <a href="{% url 'Shop:complaintshop'  %}">Complaint</a>
+    <a href="{% url 'Shop:viewadminfeedbacks'  %}">View  Feedbacks Sent to Admin</a>
+    <a href="{% url 'Shop:viewadmincomplaints'  %}">View  Complaints Sent to Admin</a>
+    <a href="{% url 'Shop:UserComplaint'  %}">View User Complaints</a>
+    
+    <a href="{% url 'Shop:logout'  %}">Logout</a>
+    
+
+    
+    
+</body>
+</html>

@@ -1,0 +1,118 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #feedbacktable {
+
+          width: 75%;
+        }
+        </style>
+</head>
+<body>
+    <div id="tab">
+    <form method="post">
+        {% csrf_token %}
+        <br><br>
+        <table align="center" border="1" id="feedbacktable">
+            <h5 align="center">Booking Time  10am to 4pm on all Weekdays</h6>
+            <tr>
+                <td>Booking Date:
+                </td>
+                <td>
+                    <input type="date" name="bookingdate" id="txtDate" required autocomplete="off">
+                </td>
+                <tr>
+                    <td>Booking Time:
+                    </td>
+                    <td>
+                        <input type="time" id="txttime" name="bookingtime" onchange="return gettime()" required autocomplete="off">
+                    </td>
+            </tr>
+            <tr>
+                <td>Reason:
+                </td>
+                <td>
+                    <input type="text" name="reason" required autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <td>Consultation Fee:
+                </td>
+                <td>
+                    <input type="text" name="consultationfee" value="100" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Book Now" name="booknow"></td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function gettime() {
+        
+        var time = $("#txttime").val();
+        var hours = Number(time.match(/^(\d+)/)[1]);
+        console.log(hours);
+        var minutes = Number(time.match(/:(\d+)/)[1]);
+        console.log(minutes);
+
+
+        //alert(hours + ":" + minutes);
+        const start = 10 * 60 + 0;
+        const end = 15 * 60 + 59;
+        currentDate = document.getElementById("txttime").value;
+
+        console.log(currentDate);
+        const now = hours * 60 + minutes;
+
+        if (start <= now && now <= end)
+        {
+            return true
+        }
+            
+        else
+        {
+
+            alert("Not Recive Booking in this time")
+            document.getElementById("txttime").value="";
+            return false
+            
+        }
+        console.log(now)
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(function() {
+        console.log("haii")
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+
+        console.log(maxDate);
+        $('#txtDate').attr('min', maxDate);
+    });
+    
+</script>
+</html>
+
+{% endblock %}

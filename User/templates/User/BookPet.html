@@ -1,0 +1,75 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cus1 {
+          width: 100%;
+        }
+        </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+<div align="center">
+    <br><br>
+     
+        <table border="1" id="customers" cellpadding="10">
+            <tr>
+            <td colspan="2">
+                <p style="text-align: center;">
+                
+                <img src="{{ obj1.image.url }}" width="120" height="120"><br>
+                Pettype:<b> {{ obj1.breedtype.pettype.pettype }}</b> <br>
+                Breedtype: <b>{{ obj1.breedtype.breedtype }}</b> <br> 
+                Details: <b>{{ obj1.details }}</b> <br> 
+                Rate: <b>{{ obj1.rate }}</b> <br> 
+                 
+            
+            </td>
+            </tr>
+            <tr>
+
+                <td>Quantity:</td>
+                <input type="hidden" name="rate" id="rate" value="{{obj1.rate}}">
+                <td><input type="number" name="quantity" id="quantity"  max="{{obj1.stock}}" min="1" value="1"
+                    onchange="getPrice()"></td>
+            </tr>
+            <tr>
+                <th>Shippingcharge</th>
+                <td>
+                    <input type="text" name="shippingcharge" id="shippingcharge" required readonly autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <td>Total Amount:</td>
+                <td><input type="text" name="totalamount" id="totalamount" readonly></td>
+            </tr>
+            <tr>
+                <td><input id="cus1" type="submit" value="Buy Now" name="buynow"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+<script>
+        function getPrice() {
+        var rate=document.getElementById("rate").value;
+        var qty=document.getElementById("quantity").value;
+        var total=rate*qty;
+        var per=total*0.05;
+        var grand=per+total;
+        document.getElementById("shippingcharge").value=per;
+        document.getElementById("totalamount").value=grand;
+    }
+    
+</script>
+</html>
+
+
+{% endblock  %}

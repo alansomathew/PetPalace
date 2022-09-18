@@ -1,0 +1,135 @@
+{% extends 'Hospital/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+
+        #status1 {border-radius:0%;
+                   background-color: lightgreen;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        #status2 {border-radius:0%;
+                   background-color: lightskyblue;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        #status3 {border-radius:0%;
+                   background-color: lightsteelblue;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        #status4 {border-radius:0%;
+                   background-color: lightcyan;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        #status5 {border-radius:0%;
+                   background-color: linen;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        </style>
+</head>
+<body>
+    <form method="post">
+        <br><br><h1 align="center">Booking List</h1>
+        <table id="customers" align="center">
+            <tr>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Doctor</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Booked Date</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Booked Time</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Date of Booking</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">ConsultationFee</td>
+                <td style="padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;border: 1px solid #ddd;
+  padding: 8px;">Action</td>
+                </tr>
+            {% for i in obj1 %}
+                
+                <tr>
+                    <td>{{i.doctor.name}}</td>
+                    <td>{{i.bookingdate}}</td>
+                    <td>{{i.bookingtime}}</td>
+                    <td>{{i.doj}}</td>
+                    <td>{{i.consultationfee}}</td>
+                    <td>
+                        {% if i.vstatus == 1 %}
+                        {% if i.pstatus == 1 %}
+                        <p id="status1">Already Paid</p>
+                        
+                        {% else %}
+                        <p id="status2">Not Paid Now</p>
+                        {% endif %}
+                        {% elif i.vstatus == 2 %}
+                        <p id="status4">Booking Canceled</p>
+                        {% else %}
+                        <p id="status5">Booking Pending</p>
+                         
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+        </table>
+        </form>
+</body>
+</html>
+
+
+{% endblock  %}

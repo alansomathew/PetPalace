@@ -1,0 +1,36 @@
+{% extends 'Hospital/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <br><br>
+    <table align="center" >
+        <tr>
+            <td><img src="{{obj1.logo.url}}" width="120" height="120"></td>
+        </tr>
+        <tr>
+            <td>{{obj1.name}}</td>
+        </tr>
+        <tr>
+            <td>{{obj1.contact}}</td>
+        </tr>
+        <tr>
+            <td>{{obj1.email}}</td>
+        </tr>
+        <tr>
+            <td>{{obj1.address}}</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+{% endblock  %}

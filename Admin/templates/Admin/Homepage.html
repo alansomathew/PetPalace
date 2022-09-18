@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h1>Admin Dashboard</h1>
+<body>
+    <a href="{% url 'Admin:newhospitals'  %}">Hospitals for Approval</a>
+    <p><a href="{% url 'Admin:newshops'  %}">Shops for Approval</a></p>
+    <p><a href="{% url 'Admin:newusers'  %}">Users List</a></p>
+    <p><a href="{% url 'Admin:accepthospitals'  %}">Accepted Hospitals List</a></p>
+    <p><a href="{% url 'Admin:rejecthospitals'  %}">Rejected Hospitals List</a></p>
+    <p><a href="{% url 'Admin:acceptshops'  %}">Accepted Shops List</a></p>
+    <p><a href="{% url 'Admin:rejectshops'  %}">Rejected Shops List</a></p>
+    <p><a href="{% url 'Admin:district'  %}">Set District</a></p>
+    <p><a href="{% url 'Admin:place'  %}">Set Place</a></p>
+    <p><a href="{% url 'Admin:pettype'  %}">Set Pettype</a></p>
+    <p><a href="{% url 'Admin:breedtype'  %}">Set Breedtype</a></p>
+    <p><a href="{% url 'Admin:hospitaltype'  %}">Set Hospitaltype</a></p>
+    <p><a href="{% url 'Admin:producttype'  %}">Set Producttype</a></p>
+    <p><a href="{% url 'Admin:viewuserfeedbacks'  %}">Userfeedbacks</a></p>
+    <p><a href="{% url 'Admin:viewhospitalfeedbacks'  %}">Hospitalfeedbacks</a></p>
+    <p><a href="{% url 'Admin:viewshopfeedbacks'  %}">Shopfeedbacks</a></p>
+    <a href="{% url 'Admin:viewdoctorfeedbacks'  %}">Doctorfeedbacks</a>
+    <a href="{% url 'Admin:UserComplaint'  %}"> View UserComplaints</a>
+    <a href="{% url 'Admin:ShopComplaint'  %}"> View ShopComplaints</a>
+    <a href="{% url 'Admin:HospitalComplaint'  %}"> View HospitalComplaints</a>
+    <a href="{% url 'Admin:DoctorComplaint'  %}"> View DoctorComplaints</a>
+    <a href="{% url 'Admin:logout'  %}">Logout</a>
+    
+    
+    
+
+
+
+
+</body>
+</html>

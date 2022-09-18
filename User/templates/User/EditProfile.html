@@ -1,0 +1,50 @@
+{% extends 'User/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="tab">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <br><br>
+        <table align="center">
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" value="{{editobj.name}}"></td>
+            </tr>
+            <tr>
+                <td>Contact:</td>
+                <td><input type="text" name="contact" value="{{editobj.contact}}"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><textarea name="address" rows="6" cols="20" >
+                    {{editobj.address}}
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>Photo:</td>
+                <td><input type="file" name="photo" ></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Save" name="save">
+                    <input type="reset" value="Cancel" name="cancel">
+
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+</body>
+</html>
+
+{% endblock  %}

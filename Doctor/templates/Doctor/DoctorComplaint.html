@@ -1,0 +1,50 @@
+{% extends 'Doctor/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <br><br><br><br>
+    <div id="tab">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table align="center">
+            <h1 align="center"> Complaint </h1>
+            <tr>
+                <td>Complaint Title:
+                </td>
+                <td><input type="text" name="complainttitle"></td>
+            </tr>
+            <tr>
+                <td>Content:
+                </td>
+                <td><input type="text" name="content"></td>
+            </tr>
+            <tr>
+                <td>Attachment:
+                </td>
+                <td><input type="file" name="attachment" required autocomplete="off"></td>
+            </tr>
+            <tr>
+            <tr>
+                <td colspan="2" >
+                    <input type="submit" name="save" value="Save">
+                    <input type="reset" name="cancel" value="Cancel">
+
+                </td>
+            </tr>
+        </table>
+
+    </form>
+    </div>
+</body>
+</html>
+
+{% endblock %}

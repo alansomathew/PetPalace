@@ -1,0 +1,186 @@
+{% extends 'Shop/Head.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 50%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+        #status1 {border-radius:0%;
+                   background-color: lightgreen;
+                     padding: 0.2rem 1rem;
+                     text-align: center;
+        }
+        #status2 {border-radius:0%;
+                   background-color: lightskyblue;
+                     padding: 0.2rem 1rem;
+                     text-align: center;}
+        </style>
+</head>
+<body>
+    <div id="tab">
+    <form method="post" enctype="multipart/form-data"  id="petform" data-pet-url="{%  url 'Shop:load-breedtype' %}">
+        {% csrf_token %}
+        <br><br>
+        <table align="center">
+            <tr>
+                <td>Product Name:</td>
+                <td><input type="text" name="productname" required autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td>Pettype:</td>
+                <td><select name="pettype" id="pettype">
+                    <option value="">---select---</option>
+                    {% for i in dis %}
+                    <option value="{{i.id}}">{{i.pettype}}</option>
+                    {% endfor %}
+                    
+                </select></td>
+            </tr>
+            <tr>
+                <td>Breedtype:</td>
+                <td> <select name="breedtype" id="breedtype">
+                    <option value="">---select---</option>
+                    
+                </select></td>
+            </tr>
+            <tr>
+                <td>Image:</td>
+                <td><input type="file" name="image" required autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td>Rate:</td>
+                <td><input type="text" name="rate" required autocomplete="off" pattern="[0-9]{1-10}"></td>
+            </tr>
+            <tr>
+                <td>Stock:</td>
+                <td><input type="text" name="stock" required autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td>Product Details:</td>
+                <td><textarea  name="productdetails" rows="6" cols="40" required autocomplete="off">
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="save" value="Save">
+                    <input type="reset" name="cancel" value="Cancel">
+                </td>
+                </tr>
+        </table>
+        <br><br>
+    <table border="1" id="customers" align="center">
+        <tr>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Product Name</td>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Pettype</td>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Breedtype</td>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Image</td>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Rate</td>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Stock</td>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Product Details</td>
+            <td   style="padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;border: 1px solid #ddd;
+padding: 8px;">Action</td>
+        </tr>
+        {% for x in dis1 %}
+        <tr>
+            <td>{{x.productname}}</td>
+            <td>{{x.breedtype.pettype.pettype}}</td>
+            <td>{{x.breedtype.breedtype}}</td>
+            <td><img src="{{x.image.url}}" width="120" height="120"></td>
+            <td>{{x.rate}}</td>
+            <td>{{x.stock}}</td>
+            <td>{{x.productdetails}}</td>
+            
+            <td><a id="status1" href="{% url 'Shop:delete-newproducts' x.id %}">Delete</a></td>
+            <td><a id="status2" href="{% url 'Shop:addstock-products' x.id %}">Add Stock</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    </form>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+ $("#pettype").change(function () {
+     var did =$(this).val();
+     var ur =$("#petform").attr("data-pet-url");
+     $.ajax({
+         url: ur,
+         data:{ disd: did, },
+         success: function(data) {
+             $("#breedtype").html(data);
+         },
+     });
+ });
+ </script>
+</html>
+
+
+{% endblock  %}

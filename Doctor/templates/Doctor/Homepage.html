@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Doctor Homepage</h1>
+    <a href="{% url 'Doctor:myprofile'  %}">My Profile</a>
+    <a href="{% url 'Doctor:editprofile'  %}">Edit Profile</a>
+    <a href="{% url 'Doctor:changepassword'  %}">Change Password</a>
+    <a href="{% url 'Doctor:feedbackdoctor'  %}">Feedback</a>
+    <a href="{% url 'Doctor:complaintdoctor'  %}">Complaint</a>
+    <a href="{% url 'Doctor:viewadminfeedbacks'  %}">View Feedbacks</a>
+    <a href="{% url 'Doctor:viewadmincomplaints'  %}">View Complaints</a>
+    <a href="{% url 'Doctor:viewdoctorbooking'  %}">View Doctor Bookings</a>
+    
+    <a href="{% url 'Doctor:logout'  %}">Logout</a>
+
+    
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+{% extends 'Guest/Head.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function chkpwd(txtrp, txtp)
+{
+if((txtrp.value)!=(txtp.value))
+{
+    document.getElementById("pass").innerHTML = "<span style='color: red;'>Passwords Mismatch</span>";
+}
+}
+
+function checknum(elem)
+{
+var numericExpression = /^[0-9]{8,10}$/;
+if(elem.value.match(numericExpression))
+{
+    document.getElementById("contact").innerHTML = "";
+    return true;
+}
+else
+{
+    document.getElementById("contact").innerHTML = "<span style='color: red;'>10 Numbers Only Allowed</span>";
+    elem.focus();
+    return false;
+}
+}
+
+
+
+function emailval(elem)
+{
+var emailexp=/^([a-zA-Z0-9.\_\-])+\@([a-zA-Z0-9.\_\-])+\.([a-zA-Z]{2,4})$/;
+if(elem.value.match(emailexp))
+{
+    document.getElementById("email").innerHTML = "";
+    return true;
+}
+else
+{
+    
+    document.getElementById("email").innerHTML ="<span style='color: red;'>Check Email Address Entered</span>";;
+    elem.focus();
+    return false;
+}
+}
+function nameval(elem)
+{
+var emailexp=/^([A-Za-z ]*)$/;
+if(elem.value.match(emailexp))
+{
+    document.getElementById("name").innerHTML = "";
+    return true;
+}
+else
+{
+    
+    document.getElementById("name").innerHTML = "<span style='color: red;'>Alphabets Are Allowed</span>";
+    elem.focus();
+    return false;
+}
+}
+
+   </script>
+</head>
+
+<body>
+    <br><br><br><br>
+    <div id="tab">
+    <form method="post" enctype="multipart/form-data" id="shopform" data-place-url="{%  url 'Guest:load-place' %}">
+        {% csrf_token %}
+        <h1 align="center">User Registration Form</h1>
+          <table align="center" border="1">
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="name"  required autocomplete="off" onkeyup="nameval(this)">
+            <div id="name"></div>
+            
+            </td>
+        </tr>
+        <tr>
+            <td>Contact:</td>
+            <td><input type="text" name="contact"  required autocomplete="off" pattern="[6-9]{1}[0-9]{9}" onkeyup="checknum(this)">
+                <div id="contact"></div>
+            
+            </td>
+        </tr>
+        <tr>
+            <td>email:</td>
+            <td><input type="email" name="email" required autocomplete="off" onkeyup="emailval(this)">
+                <div id="email"></div>
+            
+            </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><textarea name="address" rows="6" cols="40" required autocomplete="off"></textarea></td>
+        </tr>
+        <tr>
+            <td>District:</td>
+            <td>
+                <select name="district" id="district">
+                    <option value="">---select---</option>
+                    {% for i in dis %}
+                    <option value="{{i.id}}">{{i.district}}</option>
+                    {% endfor %}
+
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Place:</td>
+
+            <td>
+                <select name="place" id="place">
+                    <option value="">---select---</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Photo:</td>
+            <td><input type="file" name="photo" required autocomplete="off"></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                required=""></td>
+        </tr>
+        <tr>
+            <td>Repassword:</td>
+            <td><input type="password" name="repassword" onblur="chkpass(password,this)"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Save" name="save">
+                <input type="reset" value="Cancel" name="cancel">
+            </td>
+        </tr>
+        </table>
+    </form>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#district").change(function () {
+        var did = $(this).val();
+        var ur = $("#shopform").attr("data-place-url");
+        $.ajax({
+            url: ur,
+            data: { disd: did, },
+            success: function (data) {
+                $("#place").html(data);
+            },
+        });
+    });
+
+
+    function chkpass(pass, repass) {
+
+
+        if (pass.value != repass.value) {
+            alert("Password Missmatch")
+            return false
+        }
+        else {
+            return true
+        }
+
+    }
+</script>
+
+</html>
+
+{% endblock %}
